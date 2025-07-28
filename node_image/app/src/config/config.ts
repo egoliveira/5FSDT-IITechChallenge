@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 interface Config {
+    host: string;
     port: number;
     nodeEnv: string;
     databaseUser: string;
@@ -20,6 +21,7 @@ const DEFAULT_DATABASE_PORT = 5432;
 const DEFAULT_DATABASE_NAME = 'schola_blog';
 
 const config: Config = {
+    host: process.env.HOST || 'localhost',
     port: Number(process.env.PORT) || 3000,
     nodeEnv: process.env.NODE_ENV || 'development',
     databaseUser: process.env.DATABASE_USER || DEFAULT_DATABASE_USER,

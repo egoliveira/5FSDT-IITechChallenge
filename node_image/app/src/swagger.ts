@@ -1,4 +1,5 @@
 import swaggerAutogen from 'swagger-autogen';
+import config from "./config/config";
 
 const doc = {
     info: {
@@ -6,7 +7,9 @@ const doc = {
         description: 'Schola Blog API'
     },
 
-    host: 'localhost:3000',
+    schemes: ['http', 'https'],
+
+    host: `${config.host}:${config.port}`,
 
     components: {
         securitySchemes: {
