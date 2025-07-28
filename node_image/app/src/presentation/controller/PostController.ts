@@ -33,7 +33,7 @@ export const findPostsController: RequestHandler = async (req: AppRequest, res) 
             "bearerAuth": []
         }]
 
-        #swagger.parameters['$ref'] = ['#components/parameters/partialPostTitle', '#components/parameters/subjectId',
+        #swagger.parameters['$ref'] = ['#components/parameters/partialPostContent', '#components/parameters/subjectId',
             '#components/parameters/teachingLevelId', '#components/parameters/teachingGradeId',
             '#components/parameters/queryUserId', '#components/parameters/findPostsSortBy',
             '#components/parameters/sortOrder', '#components/parameters/page',
@@ -68,7 +68,7 @@ export const findPostsController: RequestHandler = async (req: AppRequest, res) 
     if (req.user && req.userRoles && req.userRoles.student) {
         const params = new FindPostsForStudentUseCaseParams(
             req.user.id,
-            queryData.title,
+            queryData.fullContent,
             queryData.subjectId,
             queryData.userId,
             queryData.sortBy,
@@ -80,7 +80,7 @@ export const findPostsController: RequestHandler = async (req: AppRequest, res) 
         dataPage = await container.resolve(FindPostsForStudentUseCase).execute(params);
     } else {
         const params = new FindPostsUseCaseParams(
-            queryData.title,
+            queryData.fullContent,
             queryData.subjectId,
             queryData.teachingLevelId,
             queryData.teachingGradeId,

@@ -4,7 +4,7 @@ import {Post} from "../vo/post/Post";
 import {FindPostsSortField} from "../vo/common/FindPostsSortField";
 
 export interface PostRepository {
-    find(title?: string, subjectId?: number, teachingLevelId?: number, teachingGradeId?: number, userId?: number,
+    find(fullContent?: string, subjectId?: number, teachingLevelId?: number, teachingGradeId?: number, userId?: number,
          findParams?: FindParams<FindPostsSortField>): Promise<DataPage<Post>>;
 
     getById(id: number): Promise<Post | undefined>;

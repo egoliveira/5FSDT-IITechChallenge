@@ -610,12 +610,12 @@ const doc = {
                 required: true,
                 description: 'Student id',
             },
-            partialPostTitle: {
+            partialPostContent: {
                 in: 'query',
-                name: 'title',
+                name: 'fullContent',
                 type: 'string',
                 required: false,
-                description: 'Partial post title',
+                description: 'Partial content contained in the post, it must be in the title or in its content.',
             },
             subjectId: {
                 in: 'query',

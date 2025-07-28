@@ -43,6 +43,7 @@
     "dev": "nodemon",
     "lint": "eslint 'src/**/*.ts'",
     "test": "jest --runInBand --coverage",
+    "devTest": "jest",
     "swagger": "node dist/swagger.js"
   }
 }

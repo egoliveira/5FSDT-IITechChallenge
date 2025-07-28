@@ -24,7 +24,7 @@ export class FindPostsUseCase implements UseCase<FindPostsUseCaseParams, DataPag
         );
 
         return this.postRepository.find(
-            params.title,
+            params.fullContent,
             params.subjectId,
             params.teachingLevelId,
             params.teachingGradeId,
@@ -36,7 +36,7 @@ export class FindPostsUseCase implements UseCase<FindPostsUseCaseParams, DataPag
 
 export class FindPostsUseCaseParams extends UseCaseFindParams<FindPostsSortField> {
     constructor(
-        readonly title?: string,
+        readonly fullContent?: string,
         readonly subjectId?: number,
         readonly teachingLevelId?: number,
         readonly teachingGradeId?: number,

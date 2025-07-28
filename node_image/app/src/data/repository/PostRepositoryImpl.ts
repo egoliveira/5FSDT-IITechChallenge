@@ -21,8 +21,8 @@ export class PostRepositoryImpl implements PostRepository {
         this.logger = new Logger({name: 'PostRepositoryImpl'});
     }
 
-    async find(title?: string, subjectId?: number, teachingLevelId?: number, teachingGradeId?: number, userId?: number, findParams?: FindParams<FindPostsSortField>): Promise<DataPage<Post>> {
-        this.logger.debug(`Finding posts by parameters (title: ${title}, subjectId: ${subjectId}, 
+    async find(fullContent?: string, subjectId?: number, teachingLevelId?: number, teachingGradeId?: number, userId?: number, findParams?: FindParams<FindPostsSortField>): Promise<DataPage<Post>> {
+        this.logger.debug(`Finding posts by parameters (fullContent: ${fullContent}, subjectId: ${subjectId}, 
         teachingLevelId: ${teachingLevelId}, teachingGradeId: ${teachingGradeId}, userId: ${userId}, 
         pageSize: ${findParams?.pageSize}, page: ${findParams?.page}, sortBy: ${findParams?.sortBy}, sortOrder: 
         ${findParams?.sortOrder})...`);
@@ -42,7 +42,9 @@ export class PostRepositoryImpl implements PostRepository {
             skip: pageSize * page
         }
 
-        const findOptionsWhere: FindOptionsWhere<PostEntity> = {}
+        const defaultFindOptionsWhere: FindOptionsWhere<PostEntity> = {}
+
+        const findOptionsWhere: FindOptionsWhere<PostEntity>[] = []
 
         findOptions.where = findOptionsWhere;
 
@@ -50,16 +52,12 @@ export class PostRepositoryImpl implements PostRepository {
 
         findOptions.order = findOptionsOrder;
 
-        if (title) {
-            findOptionsWhere.title = ILike(`%${title}%`);
-        }
-
         if (subjectId) {
-            findOptionsWhere.subjectId = subjectId;
+            defaultFindOptionsWhere.subjectId = subjectId;
         }
 
         if (teachingLevelId) {
-            findOptionsWhere.teachingGrade = {
+            defaultFindOptionsWhere.teachingGrade = {
                 teachingLevel: {
                     id: teachingLevelId
                 }
@@ -67,11 +65,36 @@ export class PostRepositoryImpl implements PostRepository {
         }
 
         if (teachingGradeId) {
-            findOptionsWhere.teachingGradeId = teachingGradeId;
+            defaultFindOptionsWhere.teachingGradeId = teachingGradeId;
         }
 
         if (userId) {
-            findOptionsWhere.userId = userId;
+            defaultFindOptionsWhere.userId = userId;
+        }
+
+        if (fullContent) {
+            const parts = fullContent.split(' ')
+                .filter((value: string) => value.trim().length > 0)
+                .map((value: string) => value.toLowerCase());
+
+            const uniqueParts = new Set(parts);
+
+            if (uniqueParts.size > 0) {
+                uniqueParts.forEach((part) => {
+                    const partTitleFindOptionsWhere = {...defaultFindOptionsWhere};
+                    const partContentFindOptionsWhere = {...defaultFindOptionsWhere};
+
+                    partTitleFindOptionsWhere.title = ILike(`%${part}%`);
+                    partContentFindOptionsWhere.content = ILike(`%${part}%`);
+
+                    findOptionsWhere.push(partTitleFindOptionsWhere);
+                    findOptionsWhere.push(partContentFindOptionsWhere);
+                });
+            }
+        }
+
+        if (findOptionsWhere.length == 0) {
+            findOptionsWhere.push(defaultFindOptionsWhere);
         }
 
         if (findParams && findParams.sortBy && findParams.sortOrder) {

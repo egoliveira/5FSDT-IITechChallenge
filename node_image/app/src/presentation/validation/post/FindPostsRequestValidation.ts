@@ -3,7 +3,7 @@ import {FindRequestValidation} from "../general/FindRequestValidation";
 import {FindPostsSortField} from "../../../domain/vo/common/FindPostsSortField";
 
 export const FindPostsRequestValidation = z.object({
-    title: z.string().trim().min(2).max(512).optional(),
+    fullContent: z.string().trim().min(2).max(512).optional(),
     subjectId: z.coerce.number().min(1).optional(),
     teachingLevelId: z.coerce.number().min(1).optional(),
     teachingGradeId: z.coerce.number().min(1).optional(),
