@@ -38,7 +38,7 @@
     "migrate-database": "node-pg-migrate up -m migrations",
     "delete-database": "node-pg-migrate down 100 -m migrations",
     "build": "tsc",
-    "start": "node server.js",
+    "start": "node dist/server.js",
     "dev": "nodemon",
     "lint": "eslint 'src/**/*.ts'",
     "test": "jest",

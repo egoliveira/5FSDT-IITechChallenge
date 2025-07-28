@@ -7,12 +7,13 @@ WORKDIR /opt/app
 COPY ./app/run_app.sh .
 COPY ./app/package.json .
 COPY ./app/package-lock.json .
-
-RUN npm install
-
-COPY ./app/dist .
-
+COPY ./app/tsconfig.json .
+COPY ./app/src ./src
 COPY ./app/migrations ./migrations
+
+RUN npm install && npm install typescript -g
+
+RUN tsc
 
 EXPOSE 3000
 
