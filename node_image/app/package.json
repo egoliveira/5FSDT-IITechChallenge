@@ -24,6 +24,7 @@
     "@types/node": "^24.0.1",
     "@types/swagger-jsdoc": "^6.0.4",
     "@types/swagger-ui-express": "^4.1.8",
+    "coveralls-next": "^4.0.1",
     "eslint": "^9.29.0",
     "jest": "^30.0.3",
     "jest-mock-extended": "^4.0.0",
