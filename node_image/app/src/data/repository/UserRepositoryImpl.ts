@@ -39,7 +39,7 @@ export class UserRepositoryImpl implements UserRepository {
             await manager.save(userRolesEntity);
 
             if (userRoles.student) {
-                const studentEntity = new StudentEntity(undefined, realUserEntity.id, new User(realUserEntity.id));
+                const studentEntity = new StudentEntity(undefined, realUserEntity.id, new UserEntity(realUserEntity.id));
 
                 await manager.save(studentEntity);
             }
