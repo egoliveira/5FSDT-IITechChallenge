@@ -1,6 +1,6 @@
 import {describe} from "node:test";
 import {DeepMockProxy, mockDeep, MockProxy} from "jest-mock-extended/lib/Mock";
-import {FindManyOptions, FindOneOptions, ILike, SelectQueryBuilder, UpdateQueryBuilder} from "typeorm";
+import {FindManyOptions, FindOneOptions, ILike} from "typeorm";
 import {User} from "../../../src/domain/vo/user/User";
 import {UserEntity} from "../../../src/data/entity/UserEntity";
 import {TeachingLevel} from "../../../src/domain/vo/teachinglevel/TeachingLevel";
@@ -21,8 +21,6 @@ import {PostEntity} from "../../../src/data/entity/PostEntity";
 describe('StudentRepositoryImpl class tests', () => {
     let studentDAO: DeepMockProxy<StudentDAO>;
     let studentMapper: MockProxy<StudentMapper>;
-    let selectQueryBuilder: MockProxy<SelectQueryBuilder<StudentEntity>>;
-    let updateQueryBuilder: MockProxy<UpdateQueryBuilder<StudentEntity>>;
 
     let repository: StudentRepositoryImpl;
 
