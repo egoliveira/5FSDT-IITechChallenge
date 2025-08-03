@@ -6,5 +6,15 @@ Código do segundo tech challenge do curso de pós-graduação em Fullstack Deve
 
 ## Como executar os containers Docker do projeto
 
+Crie um arquivo chamado `.env` no mesmo diretório do arquivo `docker-compose.yaml` com o seguinte conteúdo:
+
+    POSTGRES_USER=sb
+    POSTGRES_PASSWORD=scholablog
+    POSTGRES_DATABASE=schola_blog
+    NODE_LOCAL_PORT=3000
+    NODE_DOCKER_PORT=3000
+
+Depois, execute os comandos:
+
     docker compose build
     docker compose up
