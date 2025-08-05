@@ -944,7 +944,7 @@ describe('PostRepositoryImpl class tests', () => {
 
         expect(postDAO.findOne).toHaveBeenCalledWith(options);
         expect(postMapper.fromPostEntity).toHaveBeenCalledWith(post1Entity);
-        expect(postDAO.delete).toHaveBeenCalledWith(post1Entity);
+        expect(postDAO.remove).toHaveBeenCalledWith(post1Entity);
     });
 
     test('Should not delete a post by its id successfully due to invalid post id when deleteById method is executed', async () => {

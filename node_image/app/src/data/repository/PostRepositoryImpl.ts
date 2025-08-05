@@ -228,7 +228,7 @@ export class PostRepositoryImpl implements PostRepository {
         const post = await this.getById(id);
 
         if (post) {
-            await this.postDAO.delete(post)
+            await this.postDAO.remove(post)
 
             this.logger.debug(`Post id ${id} deleted successfully.`);
 
