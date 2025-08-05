@@ -13,7 +13,6 @@ export const retrieveTeachingGradesController: RequestHandler = async (req, res)
 
         #swagger.description = 'Endpoint to retrieve information about the teaching grades of a teaching level'
 
-        #swagger.parameters['$ref'] = ['#components/parameters/teachingLevelIdPath']
     */
 
     /*

@@ -584,14 +584,6 @@ const doc = {
                 required: false,
                 description: 'Teaching level id',
             },
-            teachingLevelIdPath: {
-                in: 'path',
-                name: 'teachingLevelId',
-                type: 'integer',
-                minimum: 1,
-                required: false,
-                description: 'Teaching level id',
-            },
             teachingGradeId: {
                 in: 'query',
                 name: 'teachingGradeId',
