@@ -547,7 +547,7 @@ const doc = {
                 name: 'sortOrder',
                 schema: {
                     type: 'string',
-                    enum: ['asc', 'desc'],
+                    enum: ['ASC', 'DESC'],
                 },
                 required: false,
                 description: 'Sort order',
